@@ -1,0 +1,156 @@
+/* ==== Estilos generales ==== */
+body {
+  padding-top: 80px; /* para que el header fijo no tape el contenido */
+  font-family: 'Arial', sans-serif;
+}
+
+/* ==== Sección Hero ==== */
+.hero {
+  background: url('https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+  height: 75vh;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45); /* oscurece la imagen */
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==== Botones ==== */
+.btn-success {
+  background-color: #537b65;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #436452;
+}
+
+/* ==== Footer ==== */
+footer {
+  font-size: 0.9rem;
+}
+
+/* ==== Responsividad adicional ==== */
+@media (max-width: 768px) {
+  .hero {
+    height: 60vh;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+}
+
+
+/* =========================================
+  NUEVOS ESTILOS PARA LOGIN Y FOOTER 
+  (Agregar al final de styles.css)
+=========================================
+*/
+
+footer .container {
+  padding: 0 10vw;
+}
+
+.bg-ong-green {
+  background-color: #537b65;
+}
+
+.login-section {
+  background-color: #f8f9fa;
+}
+
+.footer-social-icons a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem; /* 24px */
+  transition: opacity 0.2s ease-in-out;
+}
+
+.footer-social-icons a:hover {
+  opacity: 0.8; /* Efecto simple al pasar el mouse */
+}
+
+
+/* =========================================
+  NUEVOS ESTILOS PARA PANEL DE ADMIN
+  (Agregar al final de styles.css)
+=========================================
+*/
+
+/* Fondo gris claro para las páginas de admin, 
+  reemplaza el uso de .login-section para ser más genérico.
+*/
+.admin-bg {
+  background-color: #f8f9fa;
+}
+
+/* Barra de título verde ("Actividades") 
+  que va debajo del header.
+*/
+.admin-title-bar {
+  /* El padding-top se ajusta para compensar el header fijo.
+    Si tu header es de 80px, 1.5rem (24px) + 80px = 104px total.
+    Pero como el header es 'fixed', el 'body' ya tiene 'padding-top: 80px',
+    así que el main empieza justo debajo. La barra de título solo
+    necesita su padding interno normal.
+  */
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* Estilos para las tablas de admin, para que
+  se parezcan más al mockup.
+*/
+.table {
+  /* Evita que la columna de descripción ocupe toda la tabla */
+  table-layout: fixed;
+}
+
+.table td, .table th {
+  /* Asegura que el texto largo se corte y no rompa la tabla */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Permite que la columna de descripción sea más ancha
+  y que el texto se ajuste (wrap).
+*/
+.table th:nth-child(2),
+.table td:nth-child(2) {
+  width: 50%; /* O el porcentaje que prefieras */
+  white-space: normal; /* Permite que la descripción use varias líneas */
+}
+
+/* Ajusta las columnas de Fecha y Opción para que 
+  no sean demasiado anchas.
+*/
+.table th:nth-child(3),
+.table td:nth-child(3),
+.table th:nth-child(4),
+.table td:nth-child(4) {
+  width: 15%;
+  text-align: left;
+}
+
+/* =========================================
+  NUEVOS ESTILOS PARA FORMULARIOS ADMIN
+  (Agregar al final de styles.css)
+=========================================
+*/
+
+/* Opcional: Hacer que el interruptor (switch) 
+   use el color verde de la ONG.
+*/
+.form-check-input:checked {
+  background-color: #537b65; /* Mismo color que .btn-success */
+  border-color: #537b65;
+}

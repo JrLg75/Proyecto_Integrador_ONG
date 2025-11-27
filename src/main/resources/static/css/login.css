@@ -1,0 +1,186 @@
+:root {
+    --primary-color: #198754; /* Verde Bootstrap Success */
+    --secondary-color: #146c43;
+    --text-color: #333;
+    --bg-overlay: #198754;
+}
+
+/* Contenedor Principal */
+.container-login-register {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 600px; /* Más alto para que quepan tus campos de registro */
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+/* Formulario de Login */
+.sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+/* Formulario de Registro */
+.sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Animación al activar registro */
+.container-login-register.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+}
+
+.container-login-register.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+}
+
+@keyframes show {
+    0%, 49.99% { opacity: 0; z-index: 1; }
+    50%, 100% { opacity: 1; z-index: 5; }
+}
+
+/* Overlay (La parte verde que se mueve) */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.container-login-register.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+
+.overlay {
+    background: var(--bg-overlay);
+    background: -webkit-linear-gradient(to right, #198754, #20c997);
+    background: linear-gradient(to right, #198754, #20c997);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #FFFFFF;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.container-login-register.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+.container-login-register.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container-login-register.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+/* Estilos generales de formulario interno */
+.form-content {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+
+/* Ajuste para inputs de Bootstrap dentro del diseño */
+.input-group-custom {
+    margin: 8px 0;
+    width: 100%;
+}
+
+.scrollable-form {
+    max-height: 100%;
+    overflow-y: auto;
+    width: 100%;
+    padding: 20px 0;
+}
+/* Ocultar barra de scroll fea */
+.scrollable-form::-webkit-scrollbar { width: 5px; }
+.scrollable-form::-webkit-scrollbar-thumb { background: #ccc; border-radius: 5px; }
+
+/* Responsive para móbiles */
+@media (max-width: 768px) {
+    .container-login-register {
+        min-height: 800px;
+        height: auto;
+        overflow: visible;
+    }
+    .form-container {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 20px;
+    }
+    .sign-in-container, .sign-up-container {
+        width: 100%;
+        opacity: 1;
+        z-index: 5;
+        transform: none !important;
+        animation: none;
+        display: block;
+    }
+    .sign-up-container {
+        display: none; /* Ocultamos uno por defecto en movil y usamos JS simple */
+    }
+    .overlay-container {
+        display: none; /* En móvil quitamos la animación compleja */
+    }
+    /* Clases auxiliares para mostrar/ocultar en móvil */
+    .mobile-hide { display: none !important; }
+    .mobile-show { display: block !important; }
+}

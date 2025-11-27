@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Voluntarios - Unidos Corazones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" th:href="@{/css/actividades.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<header class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" th:href="@{/inicio}">
+            <img th:src="@{/img/logo.png}" alt="logo" height="50" class="me-2">
+            <span class="fw-bold text-success">Unidos Corazones</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <nav class="collapse navbar-collapse justify-content-end" id="menu">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/public/inicio}">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/public/actividades}">Actividades</a></li>
+            </ul>
+            <a th:href="@{/login-admin}" class="btn btn-outline-secondary ms-lg-3 btn-sm">Soy Admin</a>
+        </nav>
+    </div>
+</header>
+
+<main class="flex-grow-1 d-flex align-items-center justify-content-center pt-5 mt-5">
+
+    <div class="container-login-register" id="container"
+         th:classappend="${mostrarPanelRegistro == true} ? 'right-panel-active'">
+
+        <div class="form-container sign-up-container">
+            <div class="form-content">
+                <form th:action="@{/registro-voluntario}" method="POST" class="scrollable-form px-3">
+                    <h2 class="fw-bold mb-3 text-success">Crear Cuenta</h2>
+
+                    <div th:if="${errorRegistro}" class="alert alert-danger py-1 small" th:text="${errorRegistro}"></div>
+
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control bg-light border-0" name="nombre" th:value="${nombre}" placeholder="Nombres" required />
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control bg-light border-0" name="apellido" th:value="${apellido}" placeholder="Apellidos" required />
+                        </div>
+                    </div>
+                    <input type="text" class="form-control bg-light border-0 mt-2" name="dni" th:value="${dni}" placeholder="DNI" required />
+                    <input type="text" class="form-control bg-light border-0 mt-2" name="telefono" th:value="${telefono}" placeholder="Teléfono" />
+                    <input type="text" class="form-control bg-light border-0 mt-2" name="disponibilidad" th:value="${disponibilidad}" placeholder="Disponibilidad (ej. Sábados)" required />
+                    <textarea class="form-control bg-light border-0 mt-2" name="habilidades" th:text="${habilidades}" placeholder="Habilidades..." rows="2"></textarea>
+
+                    <input type="email" class="form-control bg-light border-0 mt-2" name="correo" th:value="${correo}" placeholder="Correo Electrónico" required />
+                    <input type="password" class="form-control bg-light border-0 mt-2" name="contrasena" placeholder="Contraseña" required />
+
+                    <button type="submit" class="btn btn-success rounded-pill px-5 mt-3 fw-bold">Registrarse</button>
+
+                    <p class="d-md-none mt-3">
+                        ¿Ya tienes cuenta? <a href="#" id="mobile-to-signin">Inicia Sesión</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <div class="form-container sign-in-container">
+            <div class="form-content">
+                <form th:action="@{/voluntario-login-process}" method="POST" class="w-100">
+                    <h2 class="fw-bold mb-2 text-success">Bienvenido</h2>
+                    <p class="text-muted mb-4">Ingresa tus credenciales de voluntario</p>
+
+                    <div th:if="${registroExitoso}" class="alert alert-success py-2 small">
+                        ¡Registro exitoso! Por favor inicia sesión.
+                    </div>
+                    <div th:if="${param.error}" class="alert alert-danger py-2 small">
+                        Usuario o contraseña incorrectos.
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-info py-2 small">
+                        Has cerrado sesión correctamente.
+                    </div>
+
+                    <div class="mb-3 w-100 text-start">
+                        <label class="form-label ms-2 small fw-bold text-muted">Correo</label>
+                        <input type="text" class="form-control bg-light border-0 p-3" name="username" placeholder="ejemplo@correo.com" required />
+                    </div>
+                    <div class="mb-3 w-100 text-start">
+                        <label class="form-label ms-2 small fw-bold text-muted">Contraseña</label>
+                        <input type="password" class="form-control bg-light border-0 p-3" name="password" placeholder="••••••••" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-success rounded-pill px-5 fw-bold btn-lg">Ingresar</button>
+
+                    <p class="d-md-none mt-4">
+                        ¿Nuevo aquí? <a href="#" id="mobile-to-signup">Regístrate</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <div class="overlay-container d-none d-md-block">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h2 class="fw-bold">¡Hola de nuevo!</h2>
+                    <p class="mb-4">Para mantenerte conectado con nosotros, por favor inicia sesión.</p>
+                    <button class="btn btn-outline-light rounded-pill px-5 fw-bold" id="signIn">Iniciar Sesión</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h2 class="fw-bold">¡Únete al equipo!</h2>
+                    <p class="mb-4">Ingresa tus datos personales y ayuda a la comunidad.</p>
+                    <button class="btn btn-outline-light rounded-pill px-5 fw-bold" id="signUp">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    // Animación Desktop
+    signUpButton.addEventListener('click', () => container.classList.add("right-panel-active"));
+    signInButton.addEventListener('click', () => container.classList.remove("right-panel-active"));
+
+    // Lógica Móvil
+    const mobileToSignUp = document.getElementById('mobile-to-signup');
+    const mobileToSignIn = document.getElementById('mobile-to-signin');
+    const signUpContainer = document.querySelector('.sign-up-container');
+    const signInContainer = document.querySelector('.sign-in-container');
+
+    if(mobileToSignUp) {
+        mobileToSignUp.addEventListener('click', (e) => {
+            e.preventDefault();
+            signInContainer.style.display = 'none';
+            signUpContainer.style.display = 'block';
+        });
+    }
+    if(mobileToSignIn) {
+        mobileToSignIn.addEventListener('click', (e) => {
+            e.preventDefault();
+            signUpContainer.style.display = 'none';
+            signInContainer.style.display = 'block';
+        });
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
