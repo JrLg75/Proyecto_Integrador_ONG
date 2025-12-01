@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/admin/logout")
                         .logoutSuccessUrl("/login-admin?logout")
-                        .deleteCookies("JSESSIONID")
+                        //.deleteCookies("JSESSIONID")
                         .permitAll()
                 );
 
@@ -55,6 +55,7 @@ public class SecurityConfig {
      * Se ejecuta para todo lo que no atrapó la cadena anterior.
      */
     @Bean
+    @Order(2)
     public SecurityFilterChain voluntarioFilterChain(HttpSecurity http) throws Exception {
 
         http
@@ -75,7 +76,7 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/voluntario/logout")
                         .logoutSuccessUrl("/login-voluntario?logout")
-                        .deleteCookies("JSESSIONID")
+                        //.deleteCookies("JSESSIONID")
                         .permitAll()
                 );
 

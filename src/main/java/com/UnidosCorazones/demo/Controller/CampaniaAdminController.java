@@ -79,4 +79,17 @@ public class CampaniaAdminController {
 
         return "redirect:/admin/campanias";
     }
+
+    // RECIBE EL ID DE LA CAMPAÑA Y MUESTRA LA LISTA DE INSCRITOS
+    @GetMapping("/{id}/inscritos")
+    public String verInscritos(@PathVariable("id") Integer id, Model model) {
+        // Se busca la campaña
+        Campania campania = campaniaService.findCampaniaById(id);
+
+        // Se pasa la campaña al modelo
+        model.addAttribute("campania", campania);
+        model.addAttribute("inscripciones", campania.getInscripciones());
+
+        return "admin-campania-inscritos"; // Nueva vista que crearemos
+    }
 }
