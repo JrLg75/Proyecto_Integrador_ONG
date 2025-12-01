@@ -1,12 +1,17 @@
+/* ====================================
+   ESTILOS DE LA PÁGINA DE INICIO
+   (Sin navbar ni footer)
+==================================== */
+
 /* ==== Estilos generales ==== */
 body {
-  padding-top: 80px; /* para que el header fijo no tape el contenido */
   font-family: 'Arial', sans-serif;
 }
 
 /* ==== Sección Hero ==== */
 .hero {
-  background: url('https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+  background: url('https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1600')
+              center/cover no-repeat;
   height: 75vh;
   position: relative;
 }
@@ -15,7 +20,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.45); /* oscurece la imagen */
+  background-color: rgba(0, 0, 0, 0.45);
 }
 
 .hero .container {
@@ -23,7 +28,7 @@ body {
   z-index: 2;
 }
 
-/* ==== Botones ==== */
+/* ==== Botones generales ==== */
 .btn-success {
   background-color: #537b65;
   border: none;
@@ -33,7 +38,7 @@ body {
   background-color: #436452;
 }
 
-/* ==== Responsividad adicional ==== */
+/* ==== Responsividad Hero ==== */
 @media (max-width: 768px) {
   .hero {
     height: 60vh;
@@ -43,7 +48,7 @@ body {
   }
 }
 
-/* ==== Ajuste para imágenes de Últimas Actividades ==== */
+/* ==== Imágenes de Últimas Actividades ==== */
 .activity-card {
   border-radius: 15px;
   overflow: hidden;
@@ -56,14 +61,14 @@ body {
 
 .activity-img {
   width: 100%;
-  height: 250px; /* altura uniforme */
+  height: 250px;
   overflow: hidden;
 }
 
 .activity-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* recorta sin deformar */
+  object-fit: cover;
   object-position: center;
   display: block;
 }
@@ -113,56 +118,7 @@ body {
   background-color: #436452;
 }
 
-/* ==== Footer ==== */
-footer {
-  background-color: #537b65;
-  color: #fff;
-  padding: 50px 0;
-  font-size: 0.9rem;
-}
-
-footer h5,
-footer h6 {
-  font-weight: bold;
-  color: #fff;
-}
-
-footer p {
-  margin-bottom: 15px;
-  opacity: 0.9;
-}
-
-footer .btn-light {
-  background-color: #fff;
-  color: #537b65;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  padding: 5px 15px;
-}
-
-footer .btn-light:hover {
-  background-color: #e7e7e7;
-  color: #436452;
-}
-
-footer a {
-  color: #fff;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-}
-
-footer a:hover {
-  opacity: 0.8;
-}
-
-footer .social-icons a {
-  font-size: 1.3rem;
-  margin-right: 15px;
-}
-
-/* ==== Responsividad ==== */
+/* ==== Responsividad de Beneficiarios ==== */
 @media (max-width: 768px) {
   .beneficiarios-section h2 {
     text-align: center;
@@ -171,13 +127,4 @@ footer .social-icons a {
   .beneficiarios-section .btn-success {
     width: 100%;
   }
-
-  footer {
-    text-align: center;
-  }
-
-  footer .social-icons {
-    margin-top: 15px;
-  }
 }
-

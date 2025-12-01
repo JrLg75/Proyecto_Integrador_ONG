@@ -1,113 +1,99 @@
-/* ==== Ajustes generales ==== */
-body {
-  font-family: 'Arial', sans-serif;
-  padding-top: 80px;
-}
 
-/* ==== Colores base ==== */
+/* ==== Variables del Prototipo ==== */
 :root {
-  --color-principal: #537b65;
-  --color-principal-oscuro: #436452;
-  --color-texto-titulo: #2f4f3e;
-  --color-texto: #444;
-  --color-fondo-suave: #f8f9f7;
+    --color-principal: #537b65;
+    --color-principal-oscuro: #436452;
+    --color-texto-titulo: #2f4f3e;
+    --color-texto: #444;
+    --color-fondo-suave: #f8f9f7;
 }
 
-/* ==== Navbar ==== */
-.navbar .nav-link {
-  color: var(--color-texto);
-  font-weight: 500;
+body {
+    font-family: 'Arial', sans-serif;
+    color: var(--color-texto);
+    /* El padding-top ya viene del layout.css */
 }
 
-.navbar .nav-link.active,
-.navbar .nav-link:hover {
-  color: var(--color-principal-oscuro);
+/* ==== Hero Section ==== */
+.hero-section {
+    background-color: var(--color-fondo-suave);
+    padding: 4rem 0;
+    border-bottom: 1px solid #e9ecef;
 }
 
-.btn-success {
-  background-color: var(--color-principal);
-  border: none;
+.hero-section h1 {
+    color: var(--color-texto-titulo);
 }
 
-.btn-success:hover {
-  background-color: var(--color-principal-oscuro);
-}
-
-/* ==== Sección Actividades ==== */
-.actividades-section {
-  background-color: var(--color-fondo-suave);
-}
-
-.actividades-section h2 {
-  color: var(--color-texto-titulo);
-}
-
-.actividades-section p {
-  color: var(--color-texto);
-}
-
+/* ==== Cards de Actividades ==== */
 .activity-card {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 12px; /* Ajustado al prototipo */
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .activity-card:hover {
-  transform: translateY(-5px);
+    transform: translateY(-5px); /* Elevación más sutil */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
 }
 
-.activity-img img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
+.activity-img-wrapper {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
 }
 
-/* ==== Footer ==== */
-footer {
-  background-color: var(--color-principal);
-  font-size: 0.9rem;
+.activity-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-footer h5,
-footer h6 {
-  font-weight: bold;
-  color: #fff;
+.activity-card:hover .activity-img-wrapper img {
+    transform: scale(1.05);
 }
 
-footer p {
-  opacity: 0.9;
+/* ==== Badges ==== */
+.badge-status {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--color-principal);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-footer .btn-light {
-  background-color: #fff;
-  color: var(--color-principal);
-  border: none;
-  font-weight: bold;
+/* ==== Textos de la Card ==== */
+.card-title {
+    color: var(--color-texto-titulo);
 }
 
-footer .btn-light:hover {
-  background-color: #e7e7e7;
-  color: var(--color-principal-oscuro);
+.text-success {
+    color: var(--color-principal) !important; /* Sobrescribe el verde bootstrap */
 }
 
-footer .social-icons a {
-  font-size: 1.3rem;
-  margin-right: 15px;
-  transition: opacity 0.3s ease;
+/* ==== Botón de Acción (CTA) ==== */
+.btn-cta {
+    background-color: var(--color-principal);
+    color: white;
+    border-radius: 50px;
+    padding: 8px 25px;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: none;
 }
 
-footer .social-icons a:hover {
-  opacity: 0.8;
-}
-
-/* ==== Responsividad ==== */
-@media (max-width: 768px) {
-  footer {
-    text-align: center;
-  }
-
-  footer .social-icons {
-    margin-top: 15px;
-  }
+.btn-cta:hover {
+    background-color: var(--color-principal-oscuro);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(83, 123, 101, 0.3);
 }

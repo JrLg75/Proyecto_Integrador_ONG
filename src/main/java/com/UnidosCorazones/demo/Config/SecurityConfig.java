@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/admin/logout")
                         .logoutSuccessUrl("/login-admin?logout")
-                        //.deleteCookies("JSESSIONID")
+                        .deleteCookies("JSESSIONID")
                         .permitAll()
                 );
 
@@ -76,7 +76,7 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/voluntario/logout")
                         .logoutSuccessUrl("/login-voluntario?logout")
-                        //.deleteCookies("JSESSIONID")
+                        .deleteCookies("JSESSIONID")
                         .permitAll()
                 );
 
