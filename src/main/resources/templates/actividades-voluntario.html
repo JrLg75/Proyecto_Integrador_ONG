@@ -123,9 +123,11 @@
                         <span class="d-block text-muted" style="font-size: 0.7rem;">Voluntario</span>
                     </div>
 
-                    <a th:href="@{/login-voluntario?logout}" class="btn btn-outline-danger btn-sm rounded-pill px-3">
-                        Salir
-                    </a>
+                    <form th:action="@{/voluntario/logout}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3">
+                            Salir
+                        </button>
+                    </form>
                 </li>
             </ul>
         </nav>

@@ -1,0 +1,98 @@
+/* --- Imagen superior --- */
+.donacion-header img {
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* --- Texto descriptivo --- */
+.donacion-descripcion {
+    width: 80%;
+    max-width: 900px;
+    margin: 20px auto 40px;
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: justify;
+
+    /* Peso más suave, armonizado */
+    font-weight: 400;
+    color: #333;
+}
+
+/* --- Formulario --- */
+.donacion-formulario {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto 60px;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 40px 50px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo label {
+    font-size: 14px;
+    margin-bottom: 6px;
+
+    /* IGUAL AL NAVBAR */
+    font-weight: 500;
+    color: #333;
+}
+
+.campo input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+
+    /* Peso normal (Bootstrap-like) */
+    font-weight: 400;
+}
+
+.campo input:focus {
+    outline: none;
+    border-color: #3b855b;
+    box-shadow: 0 0 4px #3b855b50;
+}
+
+/* --- Botón --- */
+.btn-donar {
+    width: 150px;
+    padding: 10px 0;
+
+    background: #3b855b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    /* Misma jerarquía que el botón del navbar */
+    font-weight: 500;
+
+    cursor: pointer;
+    align-self: center;
+}
+
+.btn-donar:hover {
+    background: #32734d;
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    .donacion-formulario {
+        padding: 25px;
+    }
+}

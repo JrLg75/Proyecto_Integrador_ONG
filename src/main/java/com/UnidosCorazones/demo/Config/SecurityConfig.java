@@ -55,13 +55,12 @@ public class SecurityConfig {
      * Se ejecuta para todo lo que no atrapó la cadena anterior.
      */
     @Bean
-    @Order(2)
     public SecurityFilterChain voluntarioFilterChain(HttpSecurity http) throws Exception {
 
         http
                 // No ponemos securityMatcher, así que atrapa todo lo demás
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/inicio", "/css/**", "/js/**", "/img/**", "/public/**").permitAll()
+                        .requestMatchers("/", "/inicio", "/css/**", "/js/**", "/img/**", "/public/**","/donaciones/**").permitAll()
                         .requestMatchers("/login-voluntario","/registro-voluntario").permitAll() // La página combinada
                         .requestMatchers("/voluntario/**").hasAnyAuthority("VOLUNTARIO", "ROLE_VOLUNTARIO")
                         .anyRequest().authenticated()

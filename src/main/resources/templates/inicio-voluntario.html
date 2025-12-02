@@ -40,9 +40,11 @@
                         <span class="d-block text-muted" style="font-size: 0.7rem;">Voluntario</span>
                     </div>
 
-                    <a th:href="@{/login-voluntario?logout}" class="btn btn-outline-danger btn-sm rounded-pill px-3">
-                        Salir
-                    </a>
+                    <form th:action="@{/voluntario/logout}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3">
+                            Salir
+                        </button>
+                    </form>
                 </li>
             </ul>
         </nav>
@@ -54,7 +56,7 @@
         <div class="col-md-6">
             <h1 class="fw-bold">Unidos Corazones</h1>
             <p>Gracias por ser parte del cambio. Tu tiempo y dedicación transforman vidas en nuestra comunidad.</p>
-            <a th:href="@{/donacion}" class="btn btn-success mt-2">Dona</a>
+            <a th:href="@{/donaciones/donar}" class="btn btn-success mt-2">Dona</a>
         </div>
     </div>
 </section>
@@ -96,7 +98,7 @@
                 <div>
                     <h5>Dona ahora</h5>
                     <p>Tu aporte económico nos ayuda a llegar a más lugares.</p>
-                    <a th:href="@{/donacion}" class="btn btn-dark">Pulsa Aquí</a>
+                    <a th:href="@{/donaciones/donar}" class="btn btn-dark">Pulsa Aquí</a>
                 </div>
             </div>
 
