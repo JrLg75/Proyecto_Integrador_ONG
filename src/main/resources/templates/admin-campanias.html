@@ -21,13 +21,20 @@
         .bg-ong-green { background-color: #28a745; }
         .table-hover tbody tr:hover { background-color: #f8f9fa; }
         .action-buttons a, .action-buttons button { margin-right: 5px; }
+
+        footer {
+            background-color: #537b65;
+            color: white;
+            padding: 40px 0;
+            margin-top: auto;
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
 <header class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="inicio">
+        <a class="navbar-brand d-flex align-items-center" th:href="@{/admin/campanias}">
             <img th:src="@{/img/logo.png}" alt="logo" width="me-auto" height="60" class="me-2">
         </a>
 
@@ -37,8 +44,10 @@
 
         <nav class="collapse navbar-collapse justify-content-end" id="menu">
             <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link active fw-bold text-success" th:href="@{/admin/campanias}">Actividades</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/beneficiarios}">Beneficiarios</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/admin/campanias}">Actividades</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/donaciones}">Donaciones</a>
+                </li>
             </ul>
             <form th:action="@{/admin/logout}" method="post" class="ms-lg-3">
                 <button type="submit" class="btn btn-outline-danger">Cerrar Sesión</button>
@@ -165,9 +174,9 @@
         </div>
     </div>
 </main>
-<footer class="bg-dark text-white py-4 mt-auto">
+<footer>
     <div class="container text-center">
-        <p class="mb-0 small">© 2025 Unidos Corazones. Todos los derechos reservados.</p>
+        <p class="mb-0 small opacity-75">© 2025 Unidos Corazones. Todos los derechos reservados.</p>
     </div>
 </footer>
 
