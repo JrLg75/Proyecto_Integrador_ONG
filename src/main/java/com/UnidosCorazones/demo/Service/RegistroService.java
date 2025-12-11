@@ -36,6 +36,7 @@ public class RegistroService {
         voluntario.setTipo_usuario("Voluntario");
         voluntario.setDisponibilidad(disponibilidad);
         voluntario.setHabilidades(habilidades);
+        voluntario.setDocIdentidad(dni);
 
         return voluntarioRepository.save(voluntario);
     }
