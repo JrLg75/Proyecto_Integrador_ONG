@@ -59,7 +59,11 @@ public class SecurityConfig {
 
         http
                 // No ponemos securityMatcher, así que atrapa todo lo demás
+
+
                 .authorizeHttpRequests(authorize -> authorize
+
+                        .requestMatchers("/api/pagos/**").permitAll()
                         .requestMatchers("/", "/inicio", "/css/**", "/js/**", "/img/**", "/public/**","/donaciones/**").permitAll()
                         .requestMatchers("/login-voluntario","/registro-voluntario").permitAll() // La página combinada
                         .requestMatchers("/voluntario/**").hasAnyAuthority("VOLUNTARIO", "ROLE_VOLUNTARIO")
@@ -77,6 +81,10 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/login-voluntario?logout")
                         .deleteCookies("JSESSIONID")
                         .permitAll()
+                )
+
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/api/pagos/**")
                 );
 
         return http.build();

@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Service
@@ -36,18 +37,22 @@ public class DonacionService {
     }
 
     @Transactional
-    public void registrarDonacion(Donacion donacion, String emailUsuarioLogueado) {
-        // 1. Datos de auditoría y estado
-        donacion.setFecha(LocalDateTime.now());
-        donacion.setEstado("APROBADO"); // Simulación: Asumimos que pagó correctamente
+    public void registrarDonacion(String nombre, String emailContacto, BigDecimal monto, String emailUsuarioLogueado) {
+        Donacion donacion = new Donacion();
 
-        // 2. Vincular usuario si está logueado (doble check de seguridad)
-        if (emailUsuarioLogueado != null) {
-            Usuario usuario = usuarioRepository.findByCorreo(emailUsuarioLogueado)
-                    .orElse(null);
+        // 1. Datos básicos
+        donacion.setNombreDonante(nombre);
+        donacion.setCorreoContacto(emailContacto);
+        donacion.setMonto(monto);
+        donacion.setFecha(LocalDateTime.now());
+        donacion.setEstado("APROBADO"); // Asumimos éxito porque lo llamamos post-PayPal
+
+        // 2. Vincular usuario si existe sesión (Spring Security)
+        if (emailUsuarioLogueado != null && !emailUsuarioLogueado.equals("anonymousUser")) {
+            Usuario usuario = usuarioRepository.findByCorreo(emailUsuarioLogueado).orElse(null);
             donacion.setUsuario(usuario);
         } else {
-            donacion.setUsuario(null); // Es un invitado
+            donacion.setUsuario(null);
         }
 
         // 3. Guardar

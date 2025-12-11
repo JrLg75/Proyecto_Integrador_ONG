@@ -22,31 +22,17 @@ public class DonacionController {
 
     @GetMapping("/donar")
     public String mostrarFormularioDonacion(Model model, Principal principal) {
-        // Obtenemos el email si está logueado, o null si es invitado
+        // 1. Verificamos si hay usuario (principal no es null)
         String email = (principal != null) ? principal.getName() : null;
 
-        // El servicio nos devuelve un objeto vacío o pre-llenado
-        Donacion donacion = donacionService.prepararNuevaDonacion(email);
+        // 2. El servicio busca los datos del usuario y nos devuelve una Donacion con nombre y correo llenos
+        // (Si es null, devuelve una vacía)
+        Donacion donacionPreCargada = donacionService.prepararNuevaDonacion(email);
 
-        model.addAttribute("donacion", donacion);
-        return "donaciones-form"; // Nombre de tu vista HTML
+        // 3. Pasamos ese objeto a la vista HTML
+        model.addAttribute("datosPre", donacionPreCargada);
+
+        return "donaciones-form"; // Asegúrate que este sea el nombre exacto de tu archivo HTML (sin .html)
     }
 
-    @PostMapping("/procesar")
-    public String procesarDonacion(@ModelAttribute("donacion") Donacion donacion,
-                                   Principal principal,
-                                   RedirectAttributes redirectAttrs) {
-
-        String email = (principal != null) ? principal.getName() : null;
-
-        try {
-            donacionService.registrarDonacion(donacion, email);
-            redirectAttrs.addFlashAttribute("exito", "¡Gracias por tu donación! Tu aporte ha sido registrado.");
-        } catch (Exception e) {
-            redirectAttrs.addFlashAttribute("error", "Hubo un error al procesar la donación.");
-            return "redirect:/donaciones/donar";
-        }
-
-        return "redirect:/donaciones/donar"; // O redirigir a una página de agradecimiento
-    }
 }
