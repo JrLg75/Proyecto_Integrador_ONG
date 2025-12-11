@@ -6,10 +6,12 @@ import com.UnidosCorazones.demo.Respository.DonacionRepository;
 import com.UnidosCorazones.demo.Respository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class DonacionService {
@@ -57,5 +59,10 @@ public class DonacionService {
 
         // 3. Guardar
         donacionRepository.save(donacion);
+    }
+
+    // Devuelve todas las donaciones ordenadas por fecha descendente
+    public List<Donacion> obtenerTodas() {
+        return donacionRepository.findAll(Sort.by(Sort.Direction.DESC, "fecha"));
     }
 }
