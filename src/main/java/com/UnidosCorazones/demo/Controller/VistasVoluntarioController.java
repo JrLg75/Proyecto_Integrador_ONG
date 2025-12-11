@@ -1,8 +1,10 @@
 package com.UnidosCorazones.demo.Controller;
 
 
+import com.UnidosCorazones.demo.Model.Beneficiario;
 import com.UnidosCorazones.demo.Model.Campania;
 import com.UnidosCorazones.demo.Respository.CampaniaRepository;
+import com.UnidosCorazones.demo.Service.BeneficiarioService;
 import com.UnidosCorazones.demo.Service.CampaniaService;
 import com.UnidosCorazones.demo.Service.InscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +31,22 @@ public class VistasVoluntarioController {
     @Autowired
     private InscripcionService inscripcionService;
 
+    @Autowired
+    private BeneficiarioService  beneficiarioService;
+
     @GetMapping("/inicio")
-    public String mostrarInicio(Model model){
+    public String mostrarInicioVoluntario(Model model,Principal principal) {
+
+        List<Campania> campañas = campaniaService.getUltimas3Campanias();
+        List<Beneficiario> beneficiarios = beneficiarioService.getUltimosBeneficiarios();
+
+        List<Integer> misInscripcionesIds = inscripcionService.obtenerIdsInscripciones(principal.getName());
+
+        // 3. ¡IMPORTANTE! Agregarlos al modelo para que el HTML no de error de NULL
+        model.addAttribute("campanias", campañas);
+        model.addAttribute("beneficiarios", beneficiarios);
+        model.addAttribute("misInscripcionesIds", misInscripcionesIds);
+
         return "inicio-voluntario";
     }
 

@@ -49,4 +49,9 @@ public class BeneficiarioService {
         beneficiarioRepository.save(b);
     }
 
+    public List<Beneficiario> getUltimosBeneficiarios() {
+        // Asumimos que el estado "APROBADO" es el que se debe mostrar públicamente
+        return beneficiarioRepository.findTop3ByEstadoRegistroOrderByFechaAprobacionDesc("Validado");
+    }
+
 }

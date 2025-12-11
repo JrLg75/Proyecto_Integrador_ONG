@@ -77,7 +77,7 @@
                 <div class="mb-4">
                     <h5>Hazte voluntario</h5>
                     <p>Cuerpo del texto para lo que desees ampliar sobre el tema principal.</p>
-                    <a th:href="@{/beneficiario}" class="btn btn-dark">Pulsa Aquí</a>
+                    <a th:href="@{/login-voluntario}" class="btn btn-dark">Pulsa Aquí</a>
                 </div>
                 <div>
                     <h5>Dona ahora</h5>
@@ -96,30 +96,35 @@
 <section class="py-5 bg-light">
     <div class="container">
         <h2 class="fw-bold mb-4 text-center">Últimas Actividades</h2>
-        <div class="row g-4">
-            <div class="col-md-6">
+
+        <div th:if="${campanias.empty}" class="text-center">
+            <p>No hay campañas activas en este momento.</p>
+        </div>
+
+        <div class="row g-4" th:unless="${campanias.empty}">
+
+            <div class="col-12 col-md-4" th:each="campania : ${campanias}">
+
                 <div class="card border-0 shadow-sm activity-card h-100">
-                    <div class="activity-img">
-                        <img src="https://images.pexels.com/photos/7210756/pexels-photo-7210756.jpeg?auto=compress&cs=tinysrgb&w=800" alt="actividad1">
+                    <div class="activity-img" style="height: 200px; overflow: hidden;">
+                        <img th:src="${campania.imagenUrl != null ? campania.imagenUrl : 'https://via.placeholder.com/800x400?text=Sin+Imagen'}"
+                             class="img-fluid w-100 h-100"
+                             style="object-fit: cover;"
+                             alt="Imagen Campaña">
                     </div>
+
                     <div class="card-body">
-                        <h5 class="card-title">Subtítulo</h5>
-                        <p class="card-text">Cuerpo del texto para lo que desees añadir adicionalmente al subtítulo.</p>
+                        <h5 class="card-title" th:text="${campania.titulo}">Título</h5>
+
+                        <p class="card-text small" th:text="${#strings.abbreviate(campania.descripcion, 80)}">
+                            Descripción...
+                        </p>
+
+                        <a th:href="@{/public/actividades/{id}(id=${campania.idCampania})}" class="btn btn-sm btn-outline-success mt-2">Ver más</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="card border-0 shadow-sm activity-card h-100">
-                    <div class="activity-img">
-                        <img src="https://images.pexels.com/photos/7551677/pexels-photo-7551677.jpeg?auto=compress&cs=tinysrgb&w=800" alt="actividad2">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Subtítulo</h5>
-                        <p class="card-text">Cuerpo del texto para lo que desees ampliar sobre el tema principal.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -127,37 +132,29 @@
 <section class="beneficiarios-section container">
     <h2 class="fw-bold mb-4">Beneficiarios</h2>
 
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm text-start p-3">
-                <h5 class="card-title">«Nombre 1»</h5>
-                <p class="card-text">
-                    Descripción de la organización, y necesidades básicas, junto a detalles que son necesarios compartir.
-                </p>
-            </div>
-        </div>
+    <div th:if="${beneficiarios.empty}" class="alert alert-info">
+        Aún no hay beneficiarios registrados públicamente.
+    </div>
 
-        <div class="col-md-4">
+    <div class="row g-4" th:unless="${beneficiarios.empty}">
+        <div class="col-md-4" th:each="bene : ${beneficiarios}">
             <div class="card h-100 shadow-sm text-start p-3">
-                <h5 class="card-title">«Nombre 2»</h5>
-                <p class="card-text">
-                    Descripción de la organización, y necesidades básicas, junto a detalles que son necesarios compartir.
-                </p>
-            </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm text-start p-3">
-                <h5 class="card-title">«Nombre 3»</h5>
-                <p class="card-text">
-                    Descripción de la organización, y necesidades básicas, junto a detalles que son necesarios compartir.
+                <h5 class="card-title" th:text="${bene.nombreCompletoORazon}">Nombre Beneficiario</h5>
+
+                <p class="card-text" th:text="${#strings.abbreviate(bene.justificacionSolicitud, 150)}">
+                    Descripción de la necesidad...
                 </p>
+
+                <small class="text-muted">
+                    Ayudando a <span th:text="${bene.cantidadPersonasAfectadas}">0</span> personas.
+                </small>
             </div>
         </div>
     </div>
 
     <div class="text-center mt-4">
-        <a th:href="@{/beneficiario}" class="btn btn-success px-4">Registrarse como Beneficiario</a>
+        <a th:href="@{/public/registro-beneficiario}" class="btn btn-success px-4">Registrarse como Beneficiario</a>
     </div>
 </section>
 

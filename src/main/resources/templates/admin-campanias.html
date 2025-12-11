@@ -70,7 +70,7 @@
                         <tr th:each="campania : ${campaniasActivas}">
                             <td class="fw-medium" th:text="${campania.titulo}">Título de Campaña</td>
                             <td th:text="${campania.lugar}">Lugar de Campaña</td>
-                            <td th:text="${campania.fecha_inicio}">Fecha</td>
+                            <td th:text="${campania.fechaInicio}">Fecha</td>
                             <td>
                                         <span class="badge"
                                               th:classappend="${campania.estado == 'activa'} ? 'bg-success' : 'bg-info'"
@@ -125,7 +125,7 @@
                         <tr th:each="campania : ${campaniasPasadas}">
                             <td class="fw-medium" th:text="${campania.titulo}">Título de Campaña</td>
                             <td th:text="${campania.lugar}">Lugar de Campaña</td>
-                            <td th:text="${campania.fecha_inicio}">Fecha</td>
+                            <td th:text="${campania.fechaInicio}">Fecha</td>
                             <td>
                                         <span class="badge"
                                               th:classappend="${campania.estado == 'finalizada'} ? 'bg-secondary' : 'bg-danger'"

@@ -112,30 +112,50 @@
 <section class="py-5 bg-light">
     <div class="container">
         <h2 class="fw-bold mb-4 text-center">Últimas Actividades</h2>
-        <div class="row g-4">
-            <div class="col-md-6">
+
+        <div th:if="${campanias.empty}" class="text-center">
+            <p>No hay campañas activas en este momento.</p>
+        </div>
+
+        <div class="row g-4" th:unless="${campanias.empty}">
+
+            <div class="col-12 col-md-4" th:each="campania : ${campanias}">
+
                 <div class="card border-0 shadow-sm activity-card h-100">
-                    <div class="activity-img">
-                        <img src="https://images.pexels.com/photos/7210756/pexels-photo-7210756.jpeg?auto=compress&cs=tinysrgb&w=800" alt="actividad1">
+                    <div class="activity-img" style="height: 200px; overflow: hidden;">
+                        <img th:src="${campania.imagenUrl != null ? campania.imagenUrl : 'https://via.placeholder.com/800x400?text=Sin+Imagen'}"
+                             class="img-fluid w-100 h-100"
+                             style="object-fit: cover;"
+                             alt="Imagen Campaña">
                     </div>
+
                     <div class="card-body">
-                        <h5 class="card-title">Campaña de Salud</h5>
-                        <p class="card-text">Llevamos atención médica a las zonas más vulnerables de la región.</p>
+                        <h5 class="card-title" th:text="${campania.titulo}">Título</h5>
+
+                        <p class="card-text small" th:text="${#strings.abbreviate(campania.descripcion, 80)}">
+                            Descripción...
+                        </p>
+
+                        <div class="mt-3">
+                            <div th:if="${#lists.contains(misInscripcionesIds, campania.idCampania)}">
+                                <button class="btn btn-secondary btn-sm w-100 disabled" disabled>
+                                    <i class="bi bi-check-circle-fill"></i> Inscrito
+                                </button>
+                            </div>
+
+                            <div th:unless="${#lists.contains(misInscripcionesIds, campania.idCampania)}">
+                                <form th:action="@{/voluntario/inscribirse}" method="POST">
+                                    <input type="hidden" name="idCampania" th:value="${campania.idCampania}">
+                                    <button type="submit" class="btn btn-success btn-sm w-100 shadow-sm">
+                                        Inscribirme <i class="bi bi-arrow-right-short"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="card border-0 shadow-sm activity-card h-100">
-                    <div class="activity-img">
-                        <img src="https://images.pexels.com/photos/7551677/pexels-photo-7551677.jpeg?auto=compress&cs=tinysrgb&w=800" alt="actividad2">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Educación para Todos</h5>
-                        <p class="card-text">Talleres educativos para niños y adolescentes en edad escolar.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -143,31 +163,23 @@
 <section class="beneficiarios-section container">
     <h2 class="fw-bold mb-4">Beneficiarios</h2>
 
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm text-start p-3">
-                <h5 class="card-title">Comedor "Santa Rosa"</h5>
-                <p class="card-text">
-                    Brindamos apoyo alimentario a más de 100 niños diariamente.
-                </p>
-            </div>
-        </div>
+    <div th:if="${beneficiarios.empty}" class="alert alert-info">
+        Aún no hay beneficiarios registrados públicamente.
+    </div>
 
-        <div class="col-md-4">
+    <div class="row g-4" th:unless="${beneficiarios.empty}">
+        <div class="col-md-4" th:each="bene : ${beneficiarios}">
             <div class="card h-100 shadow-sm text-start p-3">
-                <h5 class="card-title">Asociación "Esperanza"</h5>
-                <p class="card-text">
-                    Apoyo integral a familias damnificadas por desastres naturales.
-                </p>
-            </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm text-start p-3">
-                <h5 class="card-title">Albergue "Caminos"</h5>
-                <p class="card-text">
-                    Refugio temporal y asistencia psicológica para personas sin hogar.
+                <h5 class="card-title" th:text="${bene.nombreCompletoORazon}">Nombre Beneficiario</h5>
+
+                <p class="card-text" th:text="${#strings.abbreviate(bene.justificacionSolicitud, 150)}">
+                    Descripción de la necesidad...
                 </p>
+
+                <small class="text-muted">
+                    Ayudando a <span th:text="${bene.cantidadPersonasAfectadas}">0</span> personas.
+                </small>
             </div>
         </div>
     </div>

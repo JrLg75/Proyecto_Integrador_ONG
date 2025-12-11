@@ -90,4 +90,9 @@ public class CampaniaService {
         // Llama al nuevo método del repositorio
         return campaniaRepository.findByVisibleTrueAndEstado("activa");
     }
+
+    public List<Campania> getUltimas3Campanias() {
+        // Buscamos solo las que estén "activa"
+        return campaniaRepository.findTop3ByEstadoAndVisibleTrueOrderByFechaInicioDesc("activa");
+    }
 }

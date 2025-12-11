@@ -11,4 +11,5 @@ public interface BeneficiarioRepository extends JpaRepository<Beneficiario, Inte
     // Metodo de JPA para filtrar por el campo estadoRegistro
     List<Beneficiario> findByEstadoRegistro(String estadoRegistro);
 
+    List<Beneficiario> findTop3ByEstadoRegistroOrderByFechaAprobacionDesc(String estadoRegistro);
 }

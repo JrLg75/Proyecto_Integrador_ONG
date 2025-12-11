@@ -15,6 +15,7 @@ public interface CampaniaRepository extends JpaRepository<Campania, Integer> {
 
     Optional<Campania> findByIdCampania(Integer id);
 
+    List<Campania> findTop3ByEstadoAndVisibleTrueOrderByFechaInicioDesc(String estado);
 }
 
 

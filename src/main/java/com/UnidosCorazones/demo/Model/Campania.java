@@ -28,8 +28,8 @@ public class Campania {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String descripcion;
 
-    @Column(nullable = false)
-    private LocalDate fecha_inicio;
+    @Column(name = "fecha_inicio", nullable = false)
+    private LocalDate fechaInicio;
 
     private LocalDate fecha_fin;
 
