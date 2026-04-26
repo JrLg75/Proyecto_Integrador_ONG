@@ -47,10 +47,10 @@ class CampaniaServiceTest {
 
         // --- Creamos una campaña de ejemplo ---
         campania = new Campania();
-        campania.setId_campania(1);
+        campania.setIdCampania(1);
         campania.setTitulo("Campaña Test");
         campania.setDescripcion("Descripción de prueba");
-        campania.setFecha_inicio(LocalDate.now());
+        campania.setFechaInicio(LocalDate.now());
         campania.setLugar("Lima");
         campania.setEstado("activa");
         campania.setVisible(true);
@@ -84,7 +84,7 @@ class CampaniaServiceTest {
         Campania result = campaniaService.findCampaniaById(1);
 
         assertNotNull(result);
-        assertEquals(1, result.getId_campania());
+        assertEquals(1, result.getIdCampania());
         verify(campaniaRepository).findById(1);
     }
 
@@ -151,7 +151,7 @@ class CampaniaServiceTest {
     void testInicializarNuevaCampania() {
         Campania nueva = campaniaService.inicializarNuevaCampania();
         assertNotNull(nueva);
-        assertNull(nueva.getId_campania());
+        assertNull(nueva.getIdCampania());
     }
 }
 
