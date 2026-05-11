@@ -2,8 +2,8 @@ package com.UnidosCorazones.demo.Service;
 
 import com.UnidosCorazones.demo.Model.Donacion;
 import com.UnidosCorazones.demo.Model.Usuario;
-import com.UnidosCorazones.demo.Respository.DonacionRepository;
-import com.UnidosCorazones.demo.Respository.UsuarioRepository;
+import com.UnidosCorazones.demo.Repository.DonacionRepository;
+import com.UnidosCorazones.demo.Repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;

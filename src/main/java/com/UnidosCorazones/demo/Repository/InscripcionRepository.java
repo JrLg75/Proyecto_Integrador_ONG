@@ -1,4 +1,4 @@
-package com.UnidosCorazones.demo.Respository;
+package com.UnidosCorazones.demo.Repository;
 
 import com.UnidosCorazones.demo.Model.Campania;
 import com.UnidosCorazones.demo.Model.Inscripcion;

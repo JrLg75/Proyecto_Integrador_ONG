@@ -1,7 +1,7 @@
 package com.UnidosCorazones.demo.Service;
 
 import com.UnidosCorazones.demo.Model.Usuario;
-import com.UnidosCorazones.demo.Respository.UsuarioRepository;
+import com.UnidosCorazones.demo.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

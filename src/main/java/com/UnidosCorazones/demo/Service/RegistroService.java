@@ -1,7 +1,7 @@
 package com.UnidosCorazones.demo.Service;
 
 import com.UnidosCorazones.demo.Model.Voluntario;
-import com.UnidosCorazones.demo.Respository.VoluntarioRepository;
+import com.UnidosCorazones.demo.Repository.VoluntarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

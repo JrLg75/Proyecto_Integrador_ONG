@@ -1,4 +1,4 @@
-package com.UnidosCorazones.demo.Respository;
+package com.UnidosCorazones.demo.Repository;
 
 import com.UnidosCorazones.demo.Model.Beneficiario;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,7 +1,7 @@
 package com.UnidosCorazones.demo.Service;
 
 import com.UnidosCorazones.demo.Model.Beneficiario;
-import com.UnidosCorazones.demo.Respository.BeneficiarioRepository;
+import com.UnidosCorazones.demo.Repository.BeneficiarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

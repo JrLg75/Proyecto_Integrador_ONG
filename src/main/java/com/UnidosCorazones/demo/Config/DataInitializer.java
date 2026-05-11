@@ -2,8 +2,8 @@ package com.UnidosCorazones.demo.Config;
 
 import com.UnidosCorazones.demo.Model.Administrador;
 import com.UnidosCorazones.demo.Model.Usuario;
-import com.UnidosCorazones.demo.Respository.AdministradorRepository;
-import com.UnidosCorazones.demo.Respository.UsuarioRepository;
+import com.UnidosCorazones.demo.Repository.AdministradorRepository;
+import com.UnidosCorazones.demo.Repository.UsuarioRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -4,7 +4,7 @@ package com.UnidosCorazones.demo.Controller;
 import com.UnidosCorazones.demo.Model.Beneficiario;
 import com.UnidosCorazones.demo.Model.Campania;
 
-import com.UnidosCorazones.demo.Respository.CampaniaRepository;
+import com.UnidosCorazones.demo.Repository.CampaniaRepository;
 import com.UnidosCorazones.demo.Service.BeneficiarioService;
 import com.UnidosCorazones.demo.Service.CampaniaService;
 import org.springframework.beans.factory.annotation.Autowired;

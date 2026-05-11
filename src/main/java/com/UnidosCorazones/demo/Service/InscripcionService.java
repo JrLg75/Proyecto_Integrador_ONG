@@ -4,10 +4,10 @@ import com.UnidosCorazones.demo.Model.Administrador;
 import com.UnidosCorazones.demo.Model.Campania;
 import com.UnidosCorazones.demo.Model.Inscripcion;
 import com.UnidosCorazones.demo.Model.Voluntario;
-import com.UnidosCorazones.demo.Respository.CampaniaRepository;
-import com.UnidosCorazones.demo.Respository.InscripcionRepository;
-import com.UnidosCorazones.demo.Respository.AdministradorRepository;
-import com.UnidosCorazones.demo.Respository.VoluntarioRepository;
+import com.UnidosCorazones.demo.Repository.CampaniaRepository;
+import com.UnidosCorazones.demo.Repository.InscripcionRepository;
+import com.UnidosCorazones.demo.Repository.AdministradorRepository;
+import com.UnidosCorazones.demo.Repository.VoluntarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
