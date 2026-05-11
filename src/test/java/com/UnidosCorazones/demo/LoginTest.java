@@ -1,7 +1,7 @@
 package com.UnidosCorazones.demo;
 
 import com.UnidosCorazones.demo.Model.Usuario;
-import com.UnidosCorazones.demo.Respository.UsuarioRepository;
+import com.UnidosCorazones.demo.Repository.UsuarioRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

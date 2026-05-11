@@ -2,8 +2,8 @@ package com.UnidosCorazones.demo;
 
 import com.UnidosCorazones.demo.Model.Administrador;
 import com.UnidosCorazones.demo.Model.Campania;
-import com.UnidosCorazones.demo.Respository.AdministradorRepository;
-import com.UnidosCorazones.demo.Respository.CampaniaRepository;
+import com.UnidosCorazones.demo.Repository.AdministradorRepository;
+import com.UnidosCorazones.demo.Repository.CampaniaRepository;
 import com.UnidosCorazones.demo.Service.CampaniaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
